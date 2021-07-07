@@ -15,21 +15,19 @@
   {{else}}
   <p>
     <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
-      aria-controls="collapseExample">
-      + Add New User
-    </a>
+      aria-controls="collapseExample">+</a>
   </p>
   <div class="collapse" id="collapseExample">
     <div class="card card-body offset-3 col-sm-6">
-      <form>
+      <form method="POST" action="user/insert">
+        <h4>Add New User</h4>
         <div class="mb-3">
-          <label for="id" class="form-label">ID</label>
-          <input type="numeric" class="form-control" id="id" aria-describedby="required id" required>
-          <div id="emailHelp" class="form-text">Will be unique</div>
+          <label for="email" class="form-label">Email</label>
+          <input type="email" name="email" class="form-control" id="email" required>
         </div>
         <div class="mb-3">
           <label for="fullname" class="form-label">Full Name</label>
-          <input type="text" class="form-control" id="fullname" required>
+          <input type="text" class="form-control" id="fullname" name="fullname">
         </div>
         <button type="submit" class="btn btn-outline-success">ADD</button>
       </form>
@@ -37,15 +35,19 @@
     <br />
   </div>
   {{#each users as |val index|}}
-  <div class="col-sm-auto">
+  <div class="col-sm-3">
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">
           <span class="badge bg-secondary">#{{val.id}}</span>
         </h5>
-        <p class="card-text">{{val.fullname}}.</p>
+        Fullname: <i class="card-text">{{val.fullname}}.</i>
+        <br />
+        Email: <i class="text-secondary">{{val.email}}</i>
+        <br />
+        <br />
         <a class="btn btn-outline-info" href="/user/{{val.id}}">Visit</a>
-        <a class="btn btn-outline-danger" href="/user/delete/{{val.id}}">Delete</a>
+        <a class="btn btn-outline-danger" href="/user/delete/{{val.id}}" onclick="confirm('are you sure ?')">Delete</a>
       </div>
     </div>
   </div>
