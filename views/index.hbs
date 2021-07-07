@@ -1,0 +1,15 @@
+<h1>{{title}}</h1>
+<p>Welcome to {{title}}</p>
+
+{{#if condition}}
+  is true
+{{else}}
+  is false
+{{/if}}
+<br />
+{{#each array as |val index|}}
+  {{index}}
+  :
+  {{val}}
+  <br />
+{{/each}}

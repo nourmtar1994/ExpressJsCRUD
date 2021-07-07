@@ -1,0 +1,54 @@
+<div class="row">
+  <h1>{{title}}</h1>
+  {{#if type}}
+  <div class="col-sm-auto">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          welcome to user <span class="badge bg-secondary">#{{id}}</span>
+        </h5>
+        <a align="left" href="/user" class="text-default">
+          < Back</a>
+      </div>
+    </div>
+  </div>
+  {{else}}
+  <p>
+    <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+      aria-controls="collapseExample">
+      + Add New User
+    </a>
+  </p>
+  <div class="collapse" id="collapseExample">
+    <div class="card card-body offset-3 col-sm-6">
+      <form>
+        <div class="mb-3">
+          <label for="id" class="form-label">ID</label>
+          <input type="numeric" class="form-control" id="id" aria-describedby="required id" required>
+          <div id="emailHelp" class="form-text">Will be unique</div>
+        </div>
+        <div class="mb-3">
+          <label for="fullname" class="form-label">Full Name</label>
+          <input type="text" class="form-control" id="fullname" required>
+        </div>
+        <button type="submit" class="btn btn-outline-success">ADD</button>
+      </form>
+    </div>
+    <br />
+  </div>
+  {{#each users as |val index|}}
+  <div class="col-sm-auto">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">
+          <span class="badge bg-secondary">#{{val.id}}</span>
+        </h5>
+        <p class="card-text">{{val.fullname}}.</p>
+        <a class="btn btn-outline-info" href="/user/{{val.id}}">Visit</a>
+        <a class="btn btn-outline-danger" href="/user/delete/{{val.id}}">Delete</a>
+      </div>
+    </div>
+  </div>
+  {{/each}}
+  {{/if}}
+</div>
